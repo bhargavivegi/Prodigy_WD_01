@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch</title>
+  <style>
+body {
+      background-color: #e6f0ff;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+ h2 {
+      text-align: center;
+      color: red;
+      margin-top: -280px;
+      margin-right: 40px;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      margin: 10px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      margin-left: -230px;
+    }
+
+    .control-card {
+      text-align: center;
+    }
+
+    .display-card {
+      border: 1px solid #000;
+      border-radius: 8px;
+      padding: 20px;
+      background-color: #fff;
+    }
+
+    .display {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .start {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .start:hover {
+      background-color: #45a049;
+    }
+
+    .reset {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .reset:hover {
+      background-color: #d32f2f;
+    }
+
+    .lap {
+      background-color: #2196F3;
+      color: white;
+    }
+
+    .lap:hover {
+      background-color: #1e87dd;
+    }
+  </style>
+</head>
+<body>
+<h2><b><u>Stop Watch</u></b></h2><br>
+  <div class="container">
+    <div class="card">
+      <div class="control-card">
+        <div class="display-card">
+          <div class="display">00:00:00.000</div>
+        </div>
+	<br><br>
+        <button id="startStopBtn" class="btn start">Start</button>
+        <button id="resetBtn" class="btn reset">Reset</button>
+        <button id="lapBtn" class="btn lap">Lap</button>
+        <div class="laps">
+          <ul id="lapList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const display = document.querySelector('.display');
+    const startStopBtn = document.getElementById('startStopBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const lapBtn = document.getElementById('lapBtn');
+    const lapList = document.getElementById('lapList');
+
+    let startTime;
+    let running = false;
+    let laps = [];
+    let timer;
+
+    function updateDisplay() {
+      const elapsedTime = Date.now() - startTime;
+      const formattedTime = formatTime(elapsedTime);
+      display.textContent = formattedTime;
+    }
+
+    function formatTime(ms) {
+      const hours = Math.floor(ms / 3600000);
+      const minutes = Math.floor((ms % 3600000) / 60000);
+      const seconds = Math.floor((ms % 60000) / 1000);
+      const milliseconds = ms % 1000;
+      return ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')};
+    }
+
+    function startStop() {
+      if (running) {
+        clearInterval(timer);
+        startStopBtn.textContent = 'Start';
+        running = false;
+      } else {
+        startTime = Date.now() - (laps.reduce((acc, lap) => acc + lap, 0) || 0);
+        timer = setInterval(updateDisplay, 10);
+        startStopBtn.textContent = 'Stop';
+        running = true;
+      }
+    }
+
+    function reset() {
+      clearInterval(timer);
+      display.textContent = '00:00:00.000';
+      startStopBtn.textContent = 'Start';
+      running = false;
+      laps = [];
+      lapList.innerHTML = '';
+    }
+
+    function lap() {
+      const lapTime = Date.now() - startTime - (laps.reduce((acc, lap) => acc + lap, 0) || 0);
+      laps.push(lapTime);
+      const li = document.createElement('li');
+      li.textContent = formatTime(lapTime);
+      lapList.appendChild(li);
+    }
+
+    startStopBtn.addEventListener('click', startStop);
+    resetBtn.addEventListener('click', reset);
+    lapBtn.addEventListener('click', lap);
+  </script>
+</body>
+</html>
