@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      transition: all ease-out 0.5s;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --blue: #3542e4;
+    }
+
+    nav {
+      display: flex;
+      padding: 20px 50px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    a {
+      color: black;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    .logo::first-letter {
+      color: var(--red);
+    }
+
+    nav ul a {
+      margin-right: 50px;
+    }
+
+    nav ul a:hover {
+      color: var(--red);
+    }
+
+    @media only screen and (max-width: 800px) {
+      nav {
+        display: flex;
+        flex-direction: column;
+        line-height: 2;
+        text-align: center;
+      }
+    }
+
+    .home {
+      display: flex;
+      padding: 80px 50px;
+    }
+
+    h1 {
+      font-size: 60px;
+      color: var(--blue);
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+
+    .btn,
+    .left .btn {
+      background-color: var(--blue);
+      width: fit-content;
+      padding: 15px 30px;
+      font-size: 19px;
+      color: white;
+      border-radius: 20px;
+    }
+
+    .btn:hover {
+      background-color: #303f9f;
+    }
+
+    .left {
+      padding-top: 50PX;
+    }
+
+    .img {
+      width: 70%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    @media only screen and (max-width: 800px) {
+      .home {
+        display: flex;
+        flex-direction: column;
+        line-height: 2;
+        padding: 50px;
+        padding-top: 10px;
+      }
+
+      .home .img {
+        margin-top: 20px;
+        width: 100%;
+      }
+    }
+
+    .about {
+      padding: 50px;
+      text-align: center;
+    }
+
+    .abt {
+      display: flex;
+      text-align: left;
+    }
+
+    .abt .left {
+      width: 50%;
+    }
+
+    h2 {
+      color: var(--blue);
+    }
+
+    @media only screen and (max-width: 800px) {
+      .about {
+        display: flex;
+        flex-direction: column;
+        line-height: 2;
+        padding: 40px;
+        padding-top: 10px;
+      }
+
+      .abt {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .abt .left {
+        width: 100%;
+      }
+    }
+
+    .portfolio {
+      text-align: center;
+      padding: 50px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 20px;
+      row-gap: 20PX;
+    }
+
+    .card:hover {
+      filter: brightness(80%);
+    }
+
+    @media only screen and (max-width: 800px) {
+      .cards {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+
+    .blog {
+      padding: 50px;
+      text-align: center;
+    }
+
+    .h1 {
+      font-size: 40px;
+    }
+
+    .posts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 50px;
+      column-gap: 30px;
+      row-gap: 20PX;
+    }
+
+    .post {
+      display: flex;
+      text-align: left;
+      line-height: 1;
+      cursor: pointer;
+      background-color: #faf9ff;
+    }
+
+    .post:hover {
+      filter: brightness(90%);
+    }
+
+    .post p {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .post h2 {
+      font-size: 25px;
+    }
+
+    .pic {
+      width: 150px;
+      height: 100px;
+    }
+
+    .detail {
+      margin-left: 20px;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      .posts {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+
+    .contact {
+      padding: 50px;
+    }
+
+    .contact .title {
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      padding: 0 200px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      outline-color: #303f9f;
+    }
+
+    textarea {
+      padding: 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      outline-color: #303f9f;
+      height: 200px;
+      resize: none;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      form {
+        padding: 0 20px;
+      }
+    }
+
+    footer {
+      margin: 0 50px;
+    }
+
+    footer nav {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      line-height: 2;
+    }
+
+    .copy {
+      text-align: center;
+      margin: 20px;
+    }
+  </style>
+  <title>Khawla's Website</title>
+</head>
+<body>
+  <nav>
+    <a href="#" class="logo">Bhargavi</a>
+
+    <ul>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </ul>
+  </nav>
+
+  <section class="home" id="home">
+    <div class="left">
+      <h1>Your Big Idea Starts Here</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, ducimus jfishf</p>
+      <a href="#" class="btn">Explore</a>
+    </div>
+    <div class="img">
+      <img src="https://i.ibb.co/Yjyq2XC/Hero.jpg" alt="">
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="title">
+      <h1>Your Big Ideas Start Here</h1>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel unde possimus exercitationem <br> quo alias sequi perspiciatis corporis porro voluptates ea fuga cupiditate dignissimos,</p>
+    </div>
+
+    <div class="abt">
+      <div class="left">
+        <h2>Everything you need to build your site in one place</h2>
+        <p>We could create anything. Let’s do it together. Start growing in half the time with an all-in-one website builder - no more long hours spent on the boring stuff!</p>
+      </div>
+      <div class="img">
+        <img src="https://i.ibb.co/MBvKM3C/hero.png" alt="">
+      </div>
+    </div>
+    <div class="abt">
+      <div class="img">
+        <img src="https://i.ibb.co/CV0jspF/about2.png" alt="">
+      </div>
+      <div class="left">
+        <h2>We could create anything. Let’s do it together</h2>
+        <p>Everything you need to build your site in one place. All-in-one website builder for designers and creators. Your big idea starts here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio" id="portfolio">
+    <div class="title">
+      <h1>Explore Our Latest Work</h1>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam quam fuga magni sunt at neque inventore! Nam vitae iusto debitis</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <img src="https://i.ibb.co/XtWgrX7/img-2.jpg" alt="">
+      </div>
+      <div class="card">
+        <img src="https://i.ibb.co/nwNMkFz/img-3.jpg" alt="">
+      </div>
+      <div class="card">
+        <img src="https://i.ibb.co/bHfMRFP/img-5.jpg" alt="">
+      </div>
+      <div class="card">
+        <img src="https://i.ibb.co/wCN7Mx7/img-6.jpg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <section class="blog" id="blog">
+    <div class="title">
+      <h1>Everything you need to build your site in one place</h1>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni expedita maxime <br> consequuntur illum hic ullam voluptas harum deleniti rem corporis?</p>
+    </div>
+    <div class="posts">
+      <div class="post">
+        <div class="pic">
+          <img src="https://i.ibb.co/1T9Jdt2/blog5.jpg" alt="">
+        </div>
+        <div class="detail">
+          <p>Branding</p>
+          <h2>Variety of Designs</h2>
+          <p>Imagine presentation on your device</p>
+        </div>
+      </div>
+      <div class="post">
+        <div class="pic">
+          <img src="https://i.ibb.co/MNgKQQB/blog6.webp" alt="">
+        </div>
+        <div class="detail">
+          <p>Branding</p>
+          <h2>Variety of Designs</h2>
+          <p>Imagine presentation on your device</p>
+        </div>
+      </div>
+      <div class="post">
+        <div class="pic">
+          <img src="https://i.ibb.co/H7XcjS8/blog4.webp" alt="">
+        </div>
+        <div class="detail">
+          <p>Branding</p>
+          <h2>Variety of Designs</h2>
+          <p>Imagine presentation on your device</p>
+        </div>
+      </div>
+      <div class="post">
+        <div class="pic">
+          <img src="https://i.ibb.co/Hn8XY0q/blog3.webp" alt="">
+        </div>
+        <div class="detail">
+          <p>Branding</p>
+          <h2>Variety of Designs</h2>
+          <p>Imagine presentation on your device</p>
+        </div>
+      </div>
+      <div class="post">
+        <div class="pic">
+          <img src="https://i.ibb.co/mzRzrFy/blog2.jpg" alt="">
+        </div>
+        <div class="detail">
+          <p>Branding</p>
+          <h2>Variety of Designs</h2>
+          <p>Imagine presentation on your device</p>
+        </div>
+      </div>
+      <div class="post">
+        <div class="pic">
+          <img src="https://i.ibb.co/WKSdzhF/blog1.webp" alt="">
+        </div>
+        <div class="detail">
+          <p>Branding</p>
+          <h2>Variety of Designs</h2>
+          <p>Imagine presentation on your device</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="title">
+      <h1>Gather incredible ideas for your own startup</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, culpa ipsum iusto ratione quaerat deserunt esse. Temporibus deserunt reprehenderit inventore.</p>
+    </div>
+    <form>
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="E-mail">
+      <textarea placeholder="Message"></textarea>
+      <a href="#" class="btn">Submit</a>
+    </form>
+  </section>
+
+  <footer>
+    <nav>
+      <a href="#" class="logo">Bhargavi</a>
+
+      <ul>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </ul>
+    </nav>
+    <hr>
+    <div class="copy">
+      by <a href="#">Bala Bhargavi</a>@2024
+    </div>
+  </footer>
+</body>
+</html>
